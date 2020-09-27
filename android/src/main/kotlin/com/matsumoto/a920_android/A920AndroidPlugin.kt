@@ -53,6 +53,8 @@ public class A920AndroidPlugin: FlutterPlugin, MethodCallHandler {
     if (call.method == "getPlatformVersion") {
       getDal()?.getSys()?.enableNavigationKey(ENavigationKey.BACK, false)
       result.success("Android ${android.os.Build.VERSION.RELEASE}")
+    } else if(call.method == "setNavigationBar") {
+      getDal()?.getSys()?.enableNavigationKey(ENavigationKey.BACK, false)
     } else {
       result.notImplemented()
     }
