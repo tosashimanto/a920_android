@@ -50,6 +50,7 @@ public class A920AndroidPlugin: FlutterPlugin, MethodCallHandler {
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (call.method == "getPlatformVersion") {
+      getDal()?.getSys()?.enableNavigationKey(ENavigationKey.BACK, false)
       result.success("Android ${android.os.Build.VERSION.RELEASE}")
     } else {
       result.notImplemented()
@@ -58,5 +59,16 @@ public class A920AndroidPlugin: FlutterPlugin, MethodCallHandler {
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
+  }
+
+  fun getDal(): IDAL? {
+    if (dal == null) {
+      try {
+        dal = NeptuneLiteUser.getInstance().getDal(context)
+      } catch (e: Exception) {
+        e.printStackTrace()
+      }
+    }
+    return dal
   }
 }
