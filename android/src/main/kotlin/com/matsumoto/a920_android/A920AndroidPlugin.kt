@@ -40,7 +40,7 @@ public class A920AndroidPlugin: FlutterPlugin, MethodCallHandler {
   // depending on the user's project. onAttachedToEngine or registerWith must both be defined
   // in the same class.
   companion object {
-//    private var dal: IDAL? = null
+    private var dal: IDAL? = null
 
     @JvmStatic
     fun registerWith(registrar: Registrar) {
@@ -62,14 +62,15 @@ public class A920AndroidPlugin: FlutterPlugin, MethodCallHandler {
     channel.setMethodCallHandler(null)
   }
 
-//  fun getDal(): IDAL? {
-//    if (dal == null) {
-//      try {
-//        dal = NeptuneLiteUser.getInstance().getDal(context)
-//      } catch (e: Exception) {
-//        e.printStackTrace()
-//      }
-//    }
-//    return dal
-//  }
+  fun getDal(): IDAL? {
+    if (dal == null) {
+      try {
+        dal = NeptuneLiteUser.getInstance().getDal(context)
+      } catch (e: Exception) {
+        e.printStackTrace()
+      }
+    }
+    return dal
+  }
+
 }
