@@ -51,7 +51,7 @@ public class A920AndroidPlugin: FlutterPlugin, MethodCallHandler {
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (call.method == "getPlatformVersion") {
-//      getDal()?.getSys()?.enableNavigationKey(ENavigationKey.BACK, false)
+      getDal()?.getSys()?.enableNavigationKey(ENavigationKey.BACK, false)
       result.success("Android ${android.os.Build.VERSION.RELEASE}")
     } else {
       result.notImplemented()
