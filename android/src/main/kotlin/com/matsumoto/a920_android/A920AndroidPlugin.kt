@@ -61,14 +61,14 @@ public class A920AndroidPlugin: FlutterPlugin, MethodCallHandler {
     channel.setMethodCallHandler(null)
   }
 
-  fun getDal(): IDAL? {
-    if (dal == null) {
-      try {
-        dal = NeptuneLiteUser.getInstance().getDal(context)
-      } catch (e: Exception) {
-        e.printStackTrace()
-      }
-    }
-    return dal
-  }
+//  fun getDal(): IDAL? {
+//    if (dal == null) {
+//      try {
+//        dal = NeptuneLiteUser.getInstance().getDal(context)
+//      } catch (e: Exception) {
+//        e.printStackTrace()
+//      }
+//    }
+//    return dal
+//  }
 }
