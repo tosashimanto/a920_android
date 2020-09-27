@@ -1,5 +1,6 @@
 package com.matsumoto.a920_android
 
+import android.content.Context
 import androidx.annotation.NonNull;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
@@ -9,6 +10,10 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
+import com.pax.dal.IDAL
+import com.pax.dal.entity.ENavigationKey
+import com.pax.neptunelite.api.NeptuneLiteUser
+
 /** A920AndroidPlugin */
 public class A920AndroidPlugin: FlutterPlugin, MethodCallHandler {
   /// The MethodChannel that will the communication between Flutter and native Android
@@ -16,10 +21,12 @@ public class A920AndroidPlugin: FlutterPlugin, MethodCallHandler {
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
   private lateinit var channel : MethodChannel
+  private lateinit var context: Context
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "a920_android")
     channel.setMethodCallHandler(this);
+    context = flutterPluginBinding.applicationContext;
   }
 
   // This static function is optional and equivalent to onAttachedToEngine. It supports the old
@@ -32,6 +39,8 @@ public class A920AndroidPlugin: FlutterPlugin, MethodCallHandler {
   // depending on the user's project. onAttachedToEngine or registerWith must both be defined
   // in the same class.
   companion object {
+    private var dal: IDAL? = null
+
     @JvmStatic
     fun registerWith(registrar: Registrar) {
       val channel = MethodChannel(registrar.messenger(), "a920_android")
